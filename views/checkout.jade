@@ -1,0 +1,28 @@
+extends layout
+
+block content
+  h1= title
+  table.table.table-striped.mt-5.mb-5
+    thead
+      tr
+        th Product
+        th Count
+        th Price
+    tbody
+      tr
+        td Banana
+        td 2
+        td 200$
+      tr
+        td Orange
+        td 3
+        td 600$
+      tr
+        td total
+        td
+        td 800$
+  div        
+    form(action="/payment/submit",method="post")
+      input(type="hidden", name="orderId", value="#{orderId}")
+      input(type="hidden", name="price", value="800")
+      button.btn.btn-info(type="submit") Payment 800$

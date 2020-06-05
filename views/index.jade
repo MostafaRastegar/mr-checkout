@@ -1,0 +1,6 @@
+extends layout
+
+block content
+  h1= title
+  form(action="/checkout/submit",method="post")
+    a.btn.btn-info.mt-4(href="/checkout/3375") Checkout

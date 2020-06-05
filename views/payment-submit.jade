@@ -1,0 +1,12 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+  form(action="http://localhost:4002/bank",method="post", name="bank")
+    input(type="hidden", name="orderId", value="#{orderId}")
+    input(type="hidden", name="token", value="#{token}")
+    input(type="hidden", name="price", value="#{price}")
+    input(type="hidden", name="backLink", value="#{backLink}")
+    script.
+      document.forms['bank'].submit()
