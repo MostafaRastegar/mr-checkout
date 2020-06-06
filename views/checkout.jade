@@ -7,7 +7,7 @@ block content
       tr
         th Product
         th Count
-        th Price
+        th Amount
     tbody
       tr
         td Banana
@@ -21,8 +21,8 @@ block content
         td total
         td
         td 800$
-  div        
+  div
     form(action="/payment/submit",method="post")
       input(type="hidden", name="orderId", value="#{orderId}")
-      input(type="hidden", name="price", value="800")
+      input(type="hidden", name="amount", value="800")
       button.btn.btn-info(type="submit") Payment 800$

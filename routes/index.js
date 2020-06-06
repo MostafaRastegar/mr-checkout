@@ -9,35 +9,23 @@ router.get("/", function (req, res, next) {
 });
 
 /* GET users listing. */
-// router.get('/users/:id', function(req, res, next) {
-//   const { id } = req.params;
-//   res.render('users', { title: 'Users', id });
-// });
-/* GET users listing. */
 router.get("/checkout/:orderId", function (req, res, next) {
   const { orderId } = req.params;
   res.render("checkout", { title: "Please pay this order", orderId });
 });
 
 router.post("/payment/submit/", function (req, res, next) {
-  const { orderId, price } = req.body;
+  const { orderId, amount } = req.body;
   // send request and redirect
   const bankUrl = 'http://localhost:4002/login'
   const token = 2575;
-  const backLink = `http://localhost:4001/success`;
+  const callBackUrl = `http://localhost:4001/success`;
 
   var dataToPost = {
-    "username": "john",
-    "password": "password123admin",
+    "userName": "john",
+    "userPassword": "password123admin",
 	  "token": "youraccesstokensecret",
  };
-
- // let axiosConfiguration = {
- //   headers: {
- //       'Content-Type': 'application/json;charset=UTF-8',
- //       "Access-Control-Allow-Origin": "*",
- //   }
- // };
 
  axios.post(bankUrl, dataToPost)
  .then((result) => {
@@ -47,8 +35,8 @@ router.post("/payment/submit/", function (req, res, next) {
          title: "Payment submit",
          orderId,
          token,
-         backLink,
-         price,
+         callBackUrl,
+         amount,
        });
    }
  })
@@ -58,8 +46,13 @@ router.post("/payment/submit/", function (req, res, next) {
 });
 
 router.post("/success", function (req, res, next) {
-  const { orderId } = req.body;
-  res.render("payment-success", { title: "Thank you!", orderId });
+  const { orderId, ResCode } = req.body;
+  if(ResCode === "0"){
+    res.render("payment-success", { title: "Thank you!", orderId });
+  }
+  if(ResCode === "17"){
+    res.redirect('/failed');
+  }
 });
 
 router.get("/failed", function (req, res, next) {
