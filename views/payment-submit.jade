@@ -6,7 +6,7 @@ block content
   form(action="http://localhost:4002/bank",method="post", name="bank")
     input(type="hidden", name="orderId", value="#{orderId}")
     input(type="hidden", name="token", value="#{token}")
-    input(type="hidden", name="price", value="#{price}")
-    input(type="hidden", name="backLink", value="#{backLink}")
+    input(type="hidden", name="amount", value="#{amount}")
+    input(type="hidden", name="callBackUrl", value="#{callBackUrl}")
     script.
       document.forms['bank'].submit()
