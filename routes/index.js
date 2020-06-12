@@ -16,17 +16,17 @@ router.get("/checkout/:orderId", function (req, res, next) {
 router.post("/payment/submit/", function (req, res, next) {
   const { orderId, amount } = req.body;
   // send request and redirect
-  const bankUrl = 'http://localhost:4002/login'
-  const token = 2575;
+  const loginBankUrl = 'http://localhost:4002/login'
+  const token = "youraccesstokensecret";
   const callBackUrl = `http://localhost:4001/success`;
 
   var dataToPost = {
     "userName": "john",
     "userPassword": "password123admin",
-	  "token": "youraccesstokensecret",
+	  token
  };
 
- axios.post(bankUrl, dataToPost)
+ axios.post(loginBankUrl, dataToPost)
  .then((result) => {
    const { status } = result.data;
    if(status === 'ok'){
