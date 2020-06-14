@@ -16,17 +16,17 @@ router.get("/checkout/:orderId", function (req, res, next) {
 router.post("/payment/submit/", function (req, res, next) {
   const { orderId, amount } = req.body;
   // send request and redirect
-  const token = "youraccesstokensecret";
+  const terminalId = 442530;
   const callBackUrl = `http://localhost:4001/success`;
 
  res.render("payment-submit", {
    title: "Payment submit",
    orderId,
    amount,
-   token: "youraccesstokensecret",
+   terminalId: 442530,
    callBackUrl: "http://localhost:4001/success",
-   userName: "john",
-   userPassword: "password123admin",
+   userName: "mr_gateway",
+   userPassword: "mr_gateway_123456",
  });
 
  // axios.post(loginBankUrl, dataToPost)
